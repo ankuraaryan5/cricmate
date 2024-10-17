@@ -1,0 +1,69 @@
+[
+    {
+      "status": "Live",
+      "matchType": "Test",
+      "matchNo.":"1st",
+      "location": "Bengaluru",
+      "team1": {
+        "name": "India",
+        "innings": "1",
+        "score": "2-0"
+      },
+      "team2": {
+        "name": "New Zealand",
+        "innings": "1",
+        "score": "Yet to bat"
+      },
+      "matchNews":{
+        "news1":"India won the toss and elected to bat first",
+        "news2":"Star player rested for the first time",
+        "news3":"Records at galore as India set foot in the stadium"
+      }
+    },
+    {
+      "status": "Live",
+      "matchType": "2nd ODI",
+      "location": "Delhi",
+      "team1": {
+        "name": "India",
+        "score": "Yet to bat"
+      },
+      "team2": {
+        "name": "Australia",
+        "score": "Yet to bat"
+      },
+      "matchNews":{
+        "news1":"India won the toss and elected to bat first",
+        "news2":"Star player rested for the first time",
+        "news3":"Records at galore as India set foot in the stadium"
+      }
+    },
+    {
+      "status": "Upcoming",
+      "matchType": "2nd ODI",
+      "location": "Delhi",
+      "team1": {
+        "name": "India",
+        "score": "Yet to bat"
+      },
+      "team2": {
+        "name": "Australia",
+        "score": "Yet to bat"
+      }
+    },
+    {
+      "status": "Upcoming",
+      "matchType": "2nd ODI",
+      "location": "Delhi",
+      "team1": {
+        "name": "India",
+        "score": "Yet to bat"
+      },
+      "team2": {
+        "name": "Australia",
+        "score": "Yet to bat"
+      }
+    }
+
+  ]
+  
