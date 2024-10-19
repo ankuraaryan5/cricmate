@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div className="flex justify-between p-5 text-white bg-slate-800 text-3xl font-bold text-center">
@@ -21,7 +21,7 @@ function Navbar() {
           Login
         </button>
         <button className="text-2xl border border-white py-1 px-2 rounded-lg hover:bg-white hover:text-slate-800">
-          JoinUs
+          <Link to={"/signup"}>JoinUs</Link>
         </button>
       </div>
     </div>
