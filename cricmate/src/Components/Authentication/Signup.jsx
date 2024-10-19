@@ -14,24 +14,49 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     console.log("Signup form submitted", data);
+
+    try {
+      const response = await axios.post("http://localhost:4000/api/v1/signup", {
+        email: data.email,
+        password: data.password,
+        uType: data.uType,
+      });
+      console.log("Signup response:", response.data); 
+      setData({ email: "", password: "", uType: "user" });
+    } catch (error) {
+      console.error("Error signing up:", error);
+    }
     
   };
 
   const handleVerifyEmail = async (e) => {
     e.preventDefault();
-    if (data.email && data.password) {
-        setShowVerifyEmail(true);
+    if (!data.email || !data.password) {
+      console.log("Input email and password");
+      return;
     }
+  
+    setShowVerifyEmail(true);
     try {
-      const response = await axios.post("http://localhost:4000/api/signup", data);
-      console.log(response);
-      const data = await response.json();
-      console.log(data);
+      const response = await axios.post("http://localhost:4000/api/v1/sendOtp", { email: data.email });
+      console.log("OTP sent response:", response.data);
     } catch (error) {
-      console.error(error);
+      console.error("Error sending OTP:", error);
     }
   };
-
+  
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:4000/api/v1/verify", {
+        email: data.email,
+        otp: data.otp,
+      });
+      console.log("Verification response:", response.data); // Use response.data directly
+    } catch (error) {
+      console.error("Error verifying OTP:", error);
+    }
+  };
   return (
     <>
       <Navbar />
@@ -45,13 +70,16 @@ function Signup() {
         />
 
         {showVerifyEmail && (
+          <div className="flex gap-2 w-11/12 md:w-1/3">
           <input
             type="text"
-            className="border border-black p-2 rounded md:w-1/3 w-11/12"
+            className="border border-black p-2 rounded w-2/3"
             placeholder="OTP"
             value={data.otp}
             onChange={(e) => setData({ ...data, otp: e.target.value })}
           />
+          <button type="submit" className=" p-2 rounded w-1/3 hover:bg-lime-300 bg-lime-400 hover:text-orange-800 text-white" onClick={handleVerifyOtp}>Verify Email</button>
+          </div>
         )}
 
         <input
@@ -76,7 +104,7 @@ function Signup() {
             onClick={handleVerifyEmail}
             className=" p-2 rounded md:w-1/6 w-1/2 hover:bg-lime-300 bg-lime-400 hover:text-orange-800 text-white"
           >
-            Verify Email
+            Send OTP
           </button>
         )}
       </form>
