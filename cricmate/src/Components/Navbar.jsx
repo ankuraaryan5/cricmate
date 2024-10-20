@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
-{
-  /* <CiMenuBurger /> */
-}
+
 function Navbar() {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -38,7 +36,8 @@ function Navbar() {
           type="button"
           className="text-2xl border border-white py-1 px-2 rounded-lg hover:bg-white hover:text-slate-800"
         >
-          Login
+        <Link to={"/login"}>Login</Link>
+          
         </button>
         <button className="text-2xl border border-white py-1 px-2 rounded-lg hover:bg-white hover:text-slate-800">
           <Link to={"/signup"}>JoinUs</Link>
@@ -61,7 +60,7 @@ function Navbar() {
               type="button"
               className="text-2xl border border-white py-1 px-2 rounded-lg hover:bg-white hover:text-slate-800"
             >
-              Login
+              <Link to={"/login"}>Login</Link>
             </button>
             <button className="text-2xl border border-white py-1 px-2 rounded-lg hover:bg-white hover:text-slate-800">
               <Link to={"/signup"}>JoinUs</Link>
