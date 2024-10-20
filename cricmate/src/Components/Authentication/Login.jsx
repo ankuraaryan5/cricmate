@@ -38,7 +38,7 @@ function Login() {
     <div className='flex flex-col justify-center items-center w-full md:w-1/2 relative h-screen'>
     <img src="https://images.unsplash.com/photo-1708147684485-7d0485087be3?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full absolute" />
         <div className="text-white flex flex-col  gap-2 absolute p-10">
-          <h1 className="text-3xl font-bold italic">Welcome to CricMate</h1>
+          <h1 className="text-3xl font-bold italic">Welcome Back!</h1>
           <ul className="grid grid-cols-1 mt-10 sm:grid-cols-2 gap-x-8 gap-y-4">
                 {[
                   "Live Score Updates",

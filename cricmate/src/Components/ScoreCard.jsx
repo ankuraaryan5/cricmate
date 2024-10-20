@@ -1,11 +1,14 @@
 import React from "react";
-import scoreData from "./scoreData.json"; // Adjust the path as necessary
+import scoreData from "./scoreData.json"; 
 
 function ScoreCard() {
   return (
-    <div className="flex flex-wrap justify-center items-center gap-2 py-2">
+    <div className="flex justify-start items-center gap-4 py-4 px-2 overflow-x-scroll scrollbar-hide w-full">
       {scoreData.map((match, index) => (
-        <div key={index} className="flex flex-col border border-slate-500 w-1/5 rounded-lg p-2 bg-slate-300 justify-center items-center mb-4">
+        <div
+          key={index}
+          className="flex-shrink-0 border border-slate-500 rounded-lg p-4 bg-slate-300 mb-4 w-full md:w-1/2 lg:w-1/4"          
+        >
           <div className="flex gap-5">
             <p>{match.status}</p>
             <p>{match["matchNo."]} {match.matchType}</p> 
