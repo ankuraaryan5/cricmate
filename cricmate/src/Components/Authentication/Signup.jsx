@@ -4,6 +4,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { Link } from "react-router-dom";
 import {  FaCheckCircle } from "react-icons/fa";
+import { useDispatch} from "react-redux";
 
 function Signup() {
   const [data, setData] = useState({
@@ -13,10 +14,10 @@ function Signup() {
     otp: "",
   });
   const [showVerifyEmail, setShowVerifyEmail] = useState(false);
+  const dispatch = useDispatch();
   const handleSignup = async (e) => {
     e.preventDefault();
     console.log("Signup form submitted", data);
-
     try {
       const response = await axios.post("http://localhost:4000/api/v1/signup", {
         email: data.email,
@@ -24,6 +25,7 @@ function Signup() {
         uType: data.uType,
       });
       console.log("Signup response:", response.data);
+      dispatch({user: response.data.user, token: response.data.token});
       setData({ email: "", password: "", uType: "user", otp: "" });
     } catch (error) {
       console.error("Error signing up:", error);

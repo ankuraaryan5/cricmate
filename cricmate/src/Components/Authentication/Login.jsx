@@ -4,6 +4,8 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { useNavigate, Link } from 'react-router-dom';
 import {  FaCheckCircle } from "react-icons/fa";
+import { useDispatch} from "react-redux";
+import { login } from '../../store/authSlice';
 
 function Login() {
   const [data, setData] = useState({
@@ -11,6 +13,8 @@ function Login() {
     password: ""
   })
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
   const handleLogin = async (e) => {
     e.preventDefault();
     const response = await axios.post("http://localhost:4000/api/v1/login", {
@@ -19,15 +23,14 @@ function Login() {
     })
     console.log(response.data)
     if (response.data.success) {
-      localStorage.setItem("token", response.data.token)
-      localStorage.setItem("user", JSON.stringify(response.data.user))
-      console.log(response.data.user)
-      console.log("Login successful");
+      const {user,token} = response.data
+      dispatch(login({user,token}))
+      
       setData({
         email: "",
         password: ""
       }) 
-      useNavigate("/")
+      navigate("/")
     }
 
   }
