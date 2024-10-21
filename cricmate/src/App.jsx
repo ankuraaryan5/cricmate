@@ -3,10 +3,10 @@ import Hero from "./Components/Hero";
 import Signup from "./Components/Authentication/Signup";
 import Login from "./Components/Authentication/Login";
 import { useSelector } from "react-redux";
-import Dashboard from "./Components/Admin/Dashboards";
-import LiveCoverage from "./Components/Admin/LiveCoverage";
-import UpdateNews from "./Components/Admin/UpdateNews";
-import UpdateScore from "./Components/Admin/UpdateScore";
+import Dashboard from "./Components/Crew/Dashboards";
+import LiveCoverage from "./Components/Crew/LiveCoverage";
+import UpdateNews from "./Components/Crew/UpdateNews";
+import UpdateScore from "./Components/Crew/UpdateScore";
 function App() {
   useSelector((state) => state);
   return (

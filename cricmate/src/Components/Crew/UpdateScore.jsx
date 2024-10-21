@@ -3,16 +3,33 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import axios from "axios";
 function UpdateScore() {
-  const [data, setData] = useState({
-    series: "",
-    venue: "",
-    city: "",
-    matchNumber: "",
-    matchType: "",
-    status: "",
-    innings: "",
+
+  // process flow: 
+  // 1. add series details
+  // 2. add match details
+  // 3. add score details
+
+  const [seriesData, setSeriesData] = useState({
+    seriesName: "",
     team1: "",
     team2: "",
+    matchNumber: "",
+    matchType: "",
+  });
+
+  const [matchData, setMatchData] = useState({
+
+  });
+  
+  const [data, setData] = useState({
+    
+    venue: "",
+    city: "",
+    
+    
+    status: "",
+    innings: "",
+    
     team1score: "",
     team2score: "",
     date: "",
