@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 function UpdateMatch() {
   const [matchDetails, setMatchDetails] = useState({
@@ -41,6 +41,22 @@ function UpdateMatch() {
       console.error(error);
     }
   };
+
+  const getMatchDetails = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:4000/api/v1/match"
+      );
+      console.log(response.data);
+      
+      setMatchDetails(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getMatchDetails();
+  }, []);
   return (
     <div className="flex flex-col justify-center items-center bg-gray-100 py-2">
       <form
