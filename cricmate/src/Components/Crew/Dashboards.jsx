@@ -9,15 +9,17 @@ function Dashboards() {
   return (
     <div>
       <Navbar />
-      <div className="flex h-screen">
-        <div className="flex gap-4">
-          <Sidebar />
-          <div>
-          <div className="flex gap-2 w-full justify-center items-start ">
-            <UpdateScore />
-            <UpdateSeries />
-            <UpdateMatch />
+      <div className="flex">
+        <div className="flex w-full gap-4">
+          <div className="flex flex-col gap-4 w-1/8">
+            <Sidebar />
           </div>
+          <div className="flex flex-col gap-4 w-7/8">
+            <div className="flex gap-2 w-full justify-center items-start ">
+              <UpdateSeries />
+              <UpdateMatch />
+            </div>
+            <UpdateScore />
           </div>
         </div>
       </div>

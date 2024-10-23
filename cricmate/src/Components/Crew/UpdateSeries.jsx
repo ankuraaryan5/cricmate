@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 function UpdateSeries() {
   const [seriesData, setSeriesData] = useState({
     seriesName: "",
@@ -9,11 +9,19 @@ function UpdateSeries() {
     matchType: "",
   });
   const handleUpdateSeries = (e) => {
-    const { name, value } = e.target;
-    setSeriesData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    e.preventDefault();
+    try{
+      const response = axios.post("http://localhost:4000/api/v1/newSeries", {
+        seriesName: seriesData.seriesName,
+        team1: seriesData.team1,
+        team2: seriesData.team2,
+        matchNumber: seriesData.matchNumber,
+        matchType: seriesData.matchType,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className="flex flex-col justify-center items-center bg-gray-100 py-2">

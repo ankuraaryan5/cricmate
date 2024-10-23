@@ -5,8 +5,8 @@ import axios from "axios";
 
 function UpdateScore() {
   const [ballByBall, setBallByBall] = useState({
-    team1score: "",
-    team2score: "",
+    battingTeam: "",
+    teamScore: "",
     lastWicket: "",
     partnership: "",
     status: "",
@@ -22,8 +22,8 @@ function UpdateScore() {
       const response = await axios.post(
         "http://localhost:4000/api/v1/updateScore",
         {
-          team1score: ballByBall.team1score,
-          team2score: ballByBall.team2score,
+          teamScore: ballByBall.teamScore,
+          battingTeam: ballByBall.battingTeam,
           lastWicket: ballByBall.lastWicket,
           partnership: ballByBall.partnership,
           status: ballByBall.status,
@@ -36,99 +36,110 @@ function UpdateScore() {
     }
   };
   return (
-    <div className="flex flex-col align-items-center bg-light py-2">
-    <h2 className="text-center mb-4 text-primary text-3xl font-bold">Update  Score</h2>
-  <form
-    action="submit"
-    method="post"
-    onChange={handleSubmit}
-    className="flex align-items-center bg-white shadow p-2 rounded"
-    
-  >
+    <div className="flex flex-col justify-center items-center bg-light py-2 w-full">
+      <h2 className="text-center mb-4 text-primary text-3xl font-bold">
+        Update Score
+      </h2>
+      <form
+        action="post"
+        method="post"
+        onChange={handleSubmit}
+        className="flex flex-col bg-white shadow-lg p-2 rounded w-full"
+      >
+        <div>
+          <input
+            type="text"
+            placeholder="Add Batting Team"
+            value={ballByBall.battingTeam}
+            onChange={(e) =>
+              setBallByBall({ ...ballByBall, team1score: e.target.value })
+            }
+            className="form-control p-3 rounded"
+          />
 
-    <div className="form-group w-100 mb-3">
-      <input
-        type="text"
-        placeholder="Add Team 1 Score"
-        value={ballByBall.team1score}
-        onChange={(e) =>
-          setBallByBall({ ...ballByBall, team1score: e.target.value })
-        }
-        className="form-control p-3 rounded"
-      />
+          <input
+            type="text"
+            placeholder="Update Score"
+            value={ballByBall.teamScore}
+            onChange={(e) =>
+              setBallByBall({ ...ballByBall, team2score: e.target.value })
+            }
+            className="form-control p-3 rounded"
+          />
 
-    <div className="form-group w-100 mb-3">
-      <input
-        type="text"
-        placeholder="Add Team 2 Score"
-        value={ballByBall.team2score}
-        onChange={(e) =>
-          setBallByBall({ ...ballByBall, team2score: e.target.value })
-        }
-        className="form-control p-3 rounded"
-      />
-    </div>
+          <input
+            type="text"
+            placeholder="Add Last Wicket"
+            value={ballByBall.lastWicket}
+            onChange={(e) =>
+              setBallByBall({ ...ballByBall, lastWicket: e.target.value })
+            }
+            className="form-control p-3 rounded"
+          />
 
-    <div className="form-group w-100 mb-3">
-      <input
-        type="text"
-        placeholder="Add Last Wicket"
-        value={ballByBall.lastWicket}
-        onChange={(e) =>
-          setBallByBall({ ...ballByBall, lastWicket: e.target.value })
-        }
-        className="form-control p-3 rounded"
-      />
-    </div>
+          <input
+            type="text"
+            placeholder="Add Partnership"
+            value={ballByBall.partnership}
+            onChange={(e) =>
+              setBallByBall({ ...ballByBall, partnership: e.target.value })
+            }
+            className="form-control p-3 rounded"
+          />
 
-    </div>
-    <div className="form-group w-100 mb-3">
-      <input
-        type="text"
-        placeholder="Add Partnership"
-        value={ballByBall.partnership}
-        onChange={(e) =>
-          setBallByBall({ ...ballByBall, partnership: e.target.value })
-        }
-        className="form-control p-3 rounded"
-      />
+          <input
+            type="text"
+            placeholder="Add Status"
+            value={ballByBall.status}
+            onChange={(e) =>
+              setBallByBall({ ...ballByBall, status: e.target.value })
+            }
+            className="form-control p-3 rounded"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Add Innings"
+            value={ballByBall.innings}
+            onChange={(e) =>
+              setBallByBall({ ...ballByBall, innings: e.target.value })
+            }
+            className="form-control p-3 rounded"
+          />
 
-    <div className="form-group w-100 mb-3">
-      <input
-        type="text"
-        placeholder="Add Status"
-        value={ballByBall.status}
-        onChange={(e) => setBallByBall({ ...ballByBall, status: e.target.value })}
-        className="form-control p-3 rounded"
-      />
-    </div>
+          <input
+            type="text"
+            placeholder="Add Batter1"
+            value={ballByBall.batter1}
+            onChange={(e) =>
+              setBallByBall({ ...ballByBall, batter1: e.target.value })
+            }
+            className="form-control p-3 rounded"
+          />
 
-    <div className="form-group w-100 mb-3">
-      <input
-        type="text"
-        placeholder="Add Innings"
-        value={ballByBall.innings}
-        onChange={(e) =>
-          setBallByBall({ ...ballByBall, innings: e.target.value })
-        }
-        className="form-control p-3 rounded"
-      />
-    </div>
+          <input
+            type="text"
+            placeholder="Add Batter2"
+            value={ballByBall.batter2}
+            onChange={(e) =>
+              setBallByBall({ ...ballByBall, batter2: e.target.value })
+            }
+            className="form-control p-3 rounded"
+          />
 
+          <input
+            type="text"
+            placeholder="Add Bowler"
+            value={ballByBall.bowler}
+            onChange={(e) =>
+              setBallByBall({ ...ballByBall, bowler: e.target.value })
+            }
+            className="form-control p-3 rounded"
+          />
+        </div>
+      </form>
     </div>
-    <div className="form-group w-100 mb-3">
-      <input type="text" placeholder="Add Batter1" value={ballByBall.batter1} onChange={(e) => setBallByBall({ ...ballByBall, batter1: e.target.value })} className="form-control p-3 rounded" />
-
-    <div className="form-group w-100 mb-3">
-      <input type="text" placeholder="Add Batter2" value={ballByBall.batter2} onChange={(e) => setBallByBall({ ...ballByBall, batter2: e.target.value })} className="form-control p-3 rounded" />
-    </div>
-
-    <div className="form-group w-100 mb-3">
-      <input type="text" placeholder="Add Bowler" value={ballByBall.bowler} onChange={(e) => setBallByBall({ ...ballByBall, bowler: e.target.value })} className="form-control p-3 rounded" />
-    </div>
-    </div>
-  </form>
-</div>    
   );
 }
 
