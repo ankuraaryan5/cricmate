@@ -55,6 +55,7 @@ const matchSchema = new mongoose.Schema({
     type: Array,
     required: true,
   },
+  seriesId: { type: mongoose.Schema.Types.ObjectId, ref: "Series", required: true }
 });
 
 export default mongoose.model("match", matchSchema);

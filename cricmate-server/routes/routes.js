@@ -3,7 +3,7 @@ import { newSignup ,sendOtp, verifyUser } from "../controller/signupController.j
 import { userLogin } from "../controller/loginController.js";
 import { getScore, updateScore } from "../controller/scoreController.js";
 import { getSeries, newSeries, updateSeries } from "../controller/seriesController.js";
-import { getMatch, newMatch } from "../controller/matchController.js";
+import { getMatch, newMatch, updateMatch } from "../controller/matchController.js";
 const router = express.Router();
 
 router.post("/signup", newSignup);
@@ -17,6 +17,7 @@ router.post("/newSeries", newSeries);
 router.put("/updateSeries/:id", updateSeries);
 router.get("/match", getMatch);
 router.post("/newMatch", newMatch);
+router.put("/updateMatch/:id", updateMatch);
 
 
 
