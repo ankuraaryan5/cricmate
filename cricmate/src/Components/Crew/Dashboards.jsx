@@ -19,7 +19,7 @@ function Dashboards() {
               <UpdateSeries />
               <UpdateMatch />
             </div>
-            <UpdateScore />
+            {/* <UpdateScore /> */}
           </div>
         </div>
       </div>

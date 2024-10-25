@@ -19,8 +19,9 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/commentary" element={<LiveCoverage />} />
         <Route path="/news" element={<UpdateNews />} />
-        <Route path="/score" element={<UpdateScore/>} />
+        {/* <Route path="/score" element={<UpdateScore/>} /> */}
         <Route path="/store" element={<Store />} />
+        <Route path="/dashboard/:id" element={<UpdateScore />} />
       </Routes>
     </Router>
     )

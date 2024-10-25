@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function UpdateMatch() {
+  const navigate = useNavigate();
   const [matchDetails, setMatchDetails] = useState({
     venue: "",
     city: "",
@@ -43,6 +45,7 @@ function UpdateMatch() {
       });
       console.log("Match created successfully:", response.data);
       setMatchId(response.data._id); 
+      navigate(`/dashboard/${response.data._id}`);
     } catch (error) {
       console.error("Error creating match:", error);
     }

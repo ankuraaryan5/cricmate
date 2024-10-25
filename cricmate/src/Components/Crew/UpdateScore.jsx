@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function UpdateScore() {
+  const matchId = useParams().id;
+  console.log(matchId);
   const [ballByBall, setBallByBall] = useState({
     battingTeam: "",
     teamScore: "",
@@ -20,7 +23,7 @@ function UpdateScore() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/v1/updateScore",
+        "http://localhost:4000/api/v1/createScore",
         {
           teamScore: ballByBall.teamScore,
           battingTeam: ballByBall.battingTeam,
@@ -35,6 +38,25 @@ function UpdateScore() {
       console.error(error);
     }
   };
+
+  const getScoreDetails = async () => {
+    try {
+        const response = await axios.get(`http://localhost:4000/api/v1/score/${matchId}`);
+        console.log(response.data);
+        setBallByBall(response.data);
+    } catch (error) {
+        console.log("Error fetching score details:", error);
+        console.error(error);
+    }
+};
+
+useEffect(() => {
+    if (matchId) {
+        getScoreDetails(); // Fetch score details when matchId changes
+    }
+}, [matchId]);
+
+
   return (
     <div className="flex flex-col justify-center items-center bg-light py-2 w-full">
       <h2 className="text-center mb-4 text-primary text-3xl font-bold">
