@@ -1,4 +1,4 @@
-import {NewSeries} from "../models/scoringSchema.js";
+import NewSeries from "../models/scoringModel.js";
 
 export const newSeries = async (req, res) => {
     const { seriesName, team1, team2, matchType, matchNumber } = req.body;

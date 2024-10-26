@@ -1,16 +1,5 @@
 import mongoose from "mongoose";
 
-const seriesSchema = new mongoose.Schema({
-    seriesName: { type: String, required: true },
-    team1: { type: String, required: true },
-    team2: { type: String, required: true },
-    matchType: { type: String, required: true },
-    matchNumber: { type: Number, required: true },
-
-    match: [matchSchema],
-});
-
-// Commentary sub-schema
 const commentarySchema = new mongoose.Schema(
   {
     inningNumber: { type: Number, default: 1 },
@@ -31,7 +20,6 @@ const commentarySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Main unified schema for Series, Match, Score
 const matchSchema = new mongoose.Schema(
   {
     // matchType: { type: String, required: true }, // Test/ODI/T20
@@ -67,6 +55,18 @@ const matchSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+const seriesSchema = new mongoose.Schema({
+    seriesName: { type: String, required: true },
+    team1: { type: String, required: true },
+    team2: { type: String, required: true },
+    matchType: { type: String, required: true },
+    matchNumber: { type: Number, required: true },
+    match: [matchSchema],
+});
+
+// Commentary sub-schema
+
+// Main unified schema for Series, Match, Score
 
 // Indexing for performance
 matchSchema.index({ seriesName: 1, matchType: 1, matchNumber: 1 });
