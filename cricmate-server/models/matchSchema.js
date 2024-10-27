@@ -3,59 +3,80 @@ import mongoose from "mongoose";
 const matchSchema = new mongoose.Schema({
   venue: {
     type: String,
-    required: true,
+    default: null,
   },
   city: {
     type: String,
-    required: true,
+    default: null,
   },
   startDate: {
     type: Date,
-    required: true,
+    default: Date.now,
   },
   startTime: {
     type: String,
-    required: true,
+    default: null,
   },
   result: {
     type: String,
+    default: null,
   },
   toss: {
     type: String,
-    required: true,
+    default: null,
   },
   tossDecision: {
     type: String,
-    required: true,
+    default: null,
   },
   umpire1: {
     type: String,
-    required: true,
+    default: null,
   },
   umpire2: {
     type: String,
-    required: true,
+    default: null,
   },
   umpire3: {
     type: String,
-    required: true,
+    default: null,
   },
   referee: {
     type: String,
-    required: true,
+    default: null,
   },
   manOfTheMatch: {
     type: String,
   },
   team1Players: {
     type: Array,
-    required: true,
+    default: null,
   },
   team2Players: {
     type: Array,
+    default: null,
+  },
+  seriesId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Series",
     required: true,
   },
-  seriesId: { type: mongoose.Schema.Types.ObjectId, ref: "Series", required: true }
+  inning1Score: {
+    type: Number,
+    default: 0,
+  },
+  inning2Score: {
+    type: Number,
+    default: 0,
+  },
+  inning3Score: {
+    type: Number,
+    default: 0,
+  },
+  inning4Score: {
+    type: Number,
+    default: 0,
+  },
 });
 
 export default mongoose.model("match", matchSchema);
