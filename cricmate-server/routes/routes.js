@@ -4,6 +4,9 @@ import { userLogin } from "../controller/loginController.js";
 import { createScore, addCommentary, getCommentary,updateCommentary } from "../controller/scoreController.js";
 import { getSeries, newSeries, updateSeries } from "../controller/seriesController.js";
 import { getMatch, newMatch, updateMatch } from "../controller/matchController.js";
+import { createNews, getNews, updateNews } from "../controller/newsController.js";
+import { createShop, getShop, updateShop } from "../controller/shopController.js";
+import { addToCart, getCart} from "../controller/cartController.js";
 
 const router = express.Router();
 
@@ -21,23 +24,15 @@ router.put("/updateSeries/:id", updateSeries);
 router.get("/match", getMatch);
 router.post("/newMatch", newMatch);
 router.put("/updateMatch/:id", updateMatch);
-
+router.post("/createNews", createNews);
+router.get("/news", getNews);
+router.put("/updateNews/:id", updateNews);
+router.post("/createShop", createShop);
+router.get("/shop", getShop);
+router.put("/updateShop/:id", updateShop);
+router.post("/addToCart/:userId", addToCart);
+router.get("/getCart:/userId", getCart);
 
 
 
 export default router;
-
-
-// import express from "express";
-// import { newSeries, getSeries, updateSeries, addMatch, updateCommentary} from "../controller/scoringController.js";
-
-// const router = express.Router();
-
-// router.post("/newSeries", newSeries);
-// router.get("/series", getSeries);
-// router.put("/updateSeries/:id", updateSeries);
-// router.post("/addMatch/:id", addMatch);
-// router.post("/addCommentary/:id/:matchNumber/:ballNumber", updateCommentary);
-
-
-// export default router;
