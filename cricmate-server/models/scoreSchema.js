@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const commentarySchema = new mongoose.Schema({
+    inning: {
+        type: Number,
+        default: 1,
+    },
     comment: {
         type: String,
         default: null,
@@ -44,9 +48,8 @@ const scoreSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    commentary: {
-        commentary:[commentarySchema]
-    },
+    inning1Commentary: [commentarySchema],
+    inning2Commentary: [commentarySchema],
 });
 
 export default mongoose.model("score", scoreSchema);
