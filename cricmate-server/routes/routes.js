@@ -6,7 +6,7 @@ import { getSeries, newSeries, updateSeries } from "../controller/seriesControll
 import { getMatch, newMatch, updateMatch } from "../controller/matchController.js";
 import { createNews, getNews, updateNews } from "../controller/newsController.js";
 import { createShop, getShop, updateShop } from "../controller/shopController.js";
-import { addToCart, getCart} from "../controller/cartController.js";
+import { addToCart, getCart, removeFromCart,clearCart } from "../controller/cartController.js";
 
 const router = express.Router();
 
@@ -32,6 +32,8 @@ router.get("/shop", getShop);
 router.put("/updateShop/:id", updateShop);
 router.post("/addToCart/:userId", addToCart);
 router.get("/getCart:/userId", getCart);
+router.put("/removeFromCart/:userId", removeFromCart);
+router.delete("/deleteCart/:userId", clearCart );
 
 
 
