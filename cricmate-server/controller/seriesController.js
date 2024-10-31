@@ -53,3 +53,21 @@ export const updateSeries = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getThisSeries = async (req, res) => {
+  const { id } = req.query;
+  try {
+    if (id) {
+      const series = await Series.findById(id);
+      if (!series) {
+        return res.status(404).json({ message: "Series not found" });
+      }
+      return res.status(200).json(series);
+    } else {
+      const series = await Series.find();
+      return res.status(200).json(series);
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching series", error });
+  }
+}

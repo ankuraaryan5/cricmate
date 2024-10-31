@@ -8,6 +8,8 @@ import LiveCoverage from "./Components/Crew/LiveCoverage";
 import UpdateNews from "./Components/Crew/UpdateNews";
 import UpdateScore from "./Components/Crew/UpdateScore";
 import Store from "./Components/Shop/Store";
+import CreateSeries from "./Components/Crew/CreateSeries";
+
 function App() {
   useSelector((state) => state);
   return (
@@ -19,7 +21,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/commentary" element={<LiveCoverage />} />
         <Route path="/news" element={<UpdateNews />} />
-        {/* <Route path="/score" element={<UpdateScore/>} /> */}
+        <Route path="/series" element={<CreateSeries />} />
         <Route path="/store" element={<Store />} />
         <Route path="/dashboard/:id" element={<UpdateScore />} />
       </Routes>

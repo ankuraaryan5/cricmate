@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Sidebar from "./Sidebar";
-import UpdateSeries from "./UpdateSeries";
+import UpdateSeries from "./CreateSeries";
 import UpdateMatch from "./UpdateMatch";
 import UpdateScore from "./UpdateScore";
 function Dashboards() {
@@ -16,10 +16,10 @@ function Dashboards() {
           </div>
           <div className="flex flex-col gap-4 w-7/8">
             <div className="flex gap-2 w-full justify-center items-start ">
-              <UpdateSeries />
+              {/* <UpdateSeries /> */}
               <UpdateMatch />
+            <UpdateScore />
             </div>
-            {/* <UpdateScore /> */}
           </div>
         </div>
       </div>
