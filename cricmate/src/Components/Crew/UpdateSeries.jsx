@@ -31,7 +31,6 @@ function UpdateSeries() {
     const seriesId = e.target.value;
     setSelectedSeries(seriesId);
     console.log(seriesId);
-
     if (seriesId) {
       try {
         const response = await axios.get(`http://localhost:4000/api/v1/getSeries/${seriesId}`);

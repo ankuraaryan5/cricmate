@@ -3,7 +3,7 @@ import { newSignup ,sendOtp, verifyUser } from "../controller/signupController.j
 import { userLogin } from "../controller/loginController.js";
 import { createScore, addCommentary, getCommentary,updateCommentary } from "../controller/scoreController.js";
 import { getSeries, getThisSeries, newSeries, updateSeries } from "../controller/seriesController.js";
-import { getMatch, newMatch, updateMatch } from "../controller/matchController.js";
+import { getMatch, newMatch, updateMatch, getMatches } from "../controller/matchController.js";
 import { createNews, getNews, updateNews } from "../controller/newsController.js";
 import { createShop, getShop, updateShop } from "../controller/shopController.js";
 import { addToCart, getCart, removeFromCart,clearCart } from "../controller/cartController.js";
@@ -23,6 +23,7 @@ router.post("/newSeries", newSeries);
 router.put("/updateSeries/:id", updateSeries);
 router.get("/getSeries/:id", getThisSeries);
 router.get("/match", getMatch);
+router.get("/getAllMatches", getMatches);
 router.post("/newMatch", newMatch);
 router.put("/updateMatch/:id", updateMatch);
 router.post("/createNews", createNews);

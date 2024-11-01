@@ -25,13 +25,11 @@ export const newMatch = async (req, res) => {
   } = req.body;
 
   try {
-    // Check if the series exists
     const series = await Series.findById(seriesId);
     if (!series) {
       return res.status(404).json({ message: "Series not found" });
     }
-
-    // Create the match
+    const {team1, team2} = series
     const match = await Match.create({
       venue,
       city,
@@ -52,22 +50,34 @@ export const newMatch = async (req, res) => {
       inning2Score,
       inning3Score,
       inning4Score,
+      team1,
+      team2
     });
-
-    // Fetch all matches grouped by seriesId
     const matchesBySeries = await Match.find({ seriesId })
       .then((matches) => matches.reduce((acc, match) => {
         acc[seriesId] = acc[seriesId] || [];
         acc[seriesId].push(match);
         return acc;
       }, {}));
-
     res.status(200).json(matchesBySeries);
   } catch (error) {
     res.status(500).json(error);
   }
 };
 
+
+export const getMatches = async (req, res) => {
+  try {
+    const matches = await Match.find();
+    if (!matches) {
+      return res.status(404).json({ message: "Matches not found" });
+    }
+    res.status(200).json(matches);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+}
 
 export const getMatch = async (req, res) => {
   try {

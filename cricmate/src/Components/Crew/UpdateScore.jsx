@@ -5,8 +5,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 function UpdateScore() {
-  const matchId = useParams().id;
-  console.log(matchId);
+  const { matchId } = useParams();
+  const [match, setMatch] = useState([]);
   const [ballByBall, setBallByBall] = useState({
     battingTeam: "",
     teamScore: "",
@@ -52,9 +52,25 @@ function UpdateScore() {
 
 useEffect(() => {
     if (matchId) {
-        getScoreDetails(); // Fetch score details when matchId changes
+        getScoreDetails(); 
     }
 }, [matchId]);
+
+const getAllMatches = async () => {
+  try {
+      const response = await axios.get(`http://localhost:4000/api/v1/getAllMatches`);
+      console.log(response.data);
+      setMatch(response.data).filter((match) => match._id === matchId);
+      // console.log(allMatches);
+  } catch (error) {
+      console.log("Error fetching match details:", error);
+      console.error(error);
+  }
+};
+
+useEffect(() => {
+  getAllMatches();
+}, []);
 
 
   return (
@@ -62,6 +78,14 @@ useEffect(() => {
       <h2 className="text-center mb-4 text-primary text-3xl font-bold">
         Update Score
       </h2>
+      <div>
+        <select name="" id="">
+          <option value="">Select Match</option>
+          {match.map((match) => (
+            <option value={match._id}>{match.team1} vs {match.team2}</option>
+          ))}
+        </select>
+      </div>
       <form
         action="post"
         method="post"

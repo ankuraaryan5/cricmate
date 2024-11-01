@@ -55,7 +55,7 @@ export const updateSeries = async (req, res) => {
 };
 
 export const getThisSeries = async (req, res) => {
-  const { id } = req.query;
+  const { id } = req.params;
   try {
     if (id) {
       const series = await Series.findById(id);
