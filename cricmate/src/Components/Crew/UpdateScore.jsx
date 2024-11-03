@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../Navbar";
-import Footer from "../Footer";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
 function UpdateScore() {
   const { matchId } = useParams();
   const [match, setMatch] = useState([]);
+  console.log(matchId);
   const [ballByBall, setBallByBall] = useState({
     battingTeam: "",
     teamScore: "",
@@ -40,6 +39,7 @@ function UpdateScore() {
   };
 
   const getScoreDetails = async () => {
+    
     try {
         const response = await axios.get(`http://localhost:4000/api/v1/score/${matchId}`);
         console.log(response.data);
@@ -60,8 +60,8 @@ const getAllMatches = async () => {
   try {
       const response = await axios.get(`http://localhost:4000/api/v1/getAllMatches`);
       console.log(response.data);
-      setMatch(response.data).filter((match) => match._id === matchId);
-      // console.log(allMatches);
+      setMatch(response.data).filter((match) => match._id == matchId);
+      
   } catch (error) {
       console.log("Error fetching match details:", error);
       console.error(error);

@@ -11,7 +11,7 @@ import Store from "./Components/Shop/Store";
 import CreateSeries from "./Components/Crew/CreateSeries";
 
 function App() {
-  useSelector((state) => state);
+  // useSelector((state) => state);
   return (
     <Router>
       <Routes>
