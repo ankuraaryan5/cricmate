@@ -56,6 +56,20 @@ useEffect(() => {
     }
 }, [matchId]);
 
+const getSeries = async () => {
+  try {
+      const response = await axios.get(`http://localhost:4000/api/v1/series`);
+      console.log(response.data);
+      // setSeries(response.data);
+  } catch (error) {
+      console.log("Error fetching series details:", error);
+      console.error(error);
+  }
+};
+
+useEffect(() => {
+  getSeries();
+}, []);
 const getAllMatches = async () => {
   try {
       const response = await axios.get(`http://localhost:4000/api/v1/getAllMatches`);
