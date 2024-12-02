@@ -1,14 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
+
 function Sidebar() {
   return (
-    <div className="flex flex-col gap-4">
-      <Link to={"/dashboard"}>Dashboard</Link>
-      <Link to={"/news"}>UpdateNews</Link>
-      <Link to={"/series"}>UpdateSeries</Link>
-      <Link to={"/commentary"}>Commentary</Link>
+    <div className='flex flex-col items-start w-full gap-1 py-1 border border-slate-500 rounded-lg p-2'>
+    
+        <button ><Link to={'/dashboard'}></Link></button>
+        <button ><Link to={'/match'}>Match</Link></button>
+        <button ><Link to={'/score'}>Score</Link></button>
+        <button ><Link to={'/news'}>News</Link></button>
     </div>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

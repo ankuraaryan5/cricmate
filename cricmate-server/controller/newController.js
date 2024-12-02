@@ -92,7 +92,7 @@ export const addMatch = async (req, res) => {
 export const updateScore = async (req, res) => {
   try {
     const { seriesId, matchIndex } = req.params;
-    const { inning, batter1, batter2, bowler, over, ball, runs } = req.body;
+    const { inning, batter1, batter2, bowler, over, ball, runs,wicket, comment } = req.body;
 
     // Validate the input
     if (
@@ -121,6 +121,8 @@ export const updateScore = async (req, res) => {
       over,
       ball,
       runs,
+      wicket,
+      comment
     };
 
     // Push the ball score into the match score list

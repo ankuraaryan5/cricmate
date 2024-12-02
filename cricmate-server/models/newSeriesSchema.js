@@ -51,6 +51,8 @@ const newSeriesSchema = new mongoose.Schema(
             over: { type: String, default: 1 },
             ball: { type: String, default: 1 },
             runs: { type: Number, default: 0 },
+            wicket: { type: Number, default: 0 },
+            comment: { type: String, default: null },
           },
         ],
       },
