@@ -21,27 +21,10 @@ const newSeriesSchema = new mongoose.Schema(
         manOfTheMatch: { type: String, default: null },
         status: {
           type: String,
-          enum: ["Scheduled", "Live", "Completed"],
           default: "Scheduled",
         },
-        team1Players: [
-          {
-            name: { type: String, },
-            role: {
-              type: String,
-              enum: ["Batter", "Bowler", "All-rounder", "Wicket-keeper"], 
-            }
-          },
-        ],
-        team2Players: [
-          {
-            name: { type: String,  },
-            role: {
-              type: String,
-              enum: ["Batter", "Bowler", "All-rounder", "Wicket-keeper"],
-            }
-          },
-        ],
+        team1Players: [String],
+        team2Players: [String] ,
         score: [
           {
             inning: { type: Number, default: 1 },
@@ -53,6 +36,14 @@ const newSeriesSchema = new mongoose.Schema(
             runs: { type: Number, default: 0 },
             wicket: { type: Number, default: 0 },
             comment: { type: String, default: null },
+          },
+        ],
+        discussions: [
+          {
+            username: { type: String, required: true },
+            message: { type: String, required: true },
+            imageURL: { type: String, default: null },
+            timestamp: { type: Date, default: Date.now },
           },
         ],
       },
