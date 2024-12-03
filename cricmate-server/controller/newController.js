@@ -49,6 +49,15 @@ export const getSeries = async (req, res) => {
   }
 };
 
+export const getAllMatches = async (req, res) => {
+  const { seriesId } = req.params;
+  try {
+    const series = await NewSeries.findById(seriesId);
+    res.status(200).json(series.matchData);
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error", details: error.message });
+  }
+}
 export const addMatch = async (req, res) => {
   const {
     seriesId,
@@ -130,7 +139,7 @@ export const getMatch = async (req, res) => {
 // for ball by ball score update
 export const updateScore = async (req, res) => {
   try {
-    const { seriesId, matchIndex } = req.body;
+    const { seriesId, matchIndex } = req.params; 
     const {
       inning,
       batter1,
