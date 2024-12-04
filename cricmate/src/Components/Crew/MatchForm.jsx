@@ -6,7 +6,7 @@ import Navbar from "../Navbar";
 function MatchForm() {
   const [selectedSeriesId, setSelectedSeriesId] = useState("");
   const [formData, setFormData] = useState({
-    seriesId: selectedSeriesId, // Set seriesId initially based on selectedSeriesId
+    seriesId: selectedSeriesId, 
     venue: "",
     city: "",
     startDate: "",

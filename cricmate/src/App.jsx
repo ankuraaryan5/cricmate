@@ -11,7 +11,8 @@ import ScoreForm from "./Components/Crew/ScoreForm";
 import SeriesForm from "./Components/Crew/SeriesForm";
 
 function App() {
-  // useSelector((state) => state);
+  const seriesData = useSelector((state) => state.series?.seriesData || []);
+  console.log(seriesData);
   return (
     <Router>
       <Routes>

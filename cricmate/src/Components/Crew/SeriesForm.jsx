@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar";
 import Navbar from "../Navbar";
+import { useDispatch } from "react-redux";
+import { addSeries } from "../../store/scoreSlice";
 
 function SeriesForm() {
   const [formData, setFormData] = useState({
@@ -12,7 +14,7 @@ function SeriesForm() {
   });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -23,8 +25,9 @@ function SeriesForm() {
     setMessage("");
     setError("");
     try {
-      const response = await axios.post("/series", formData);
+      const response = await axios.post("http://localhost:4000/api/v1/series", formData);
       setMessage(response.data.message);
+      dispatch(addSeries(formData));
       setFormData({ team1: "", team2: "", matchType: "", totalMatches: "" });
     } catch (err) {
       setError(err.response?.data?.error || "Something went wrong");
