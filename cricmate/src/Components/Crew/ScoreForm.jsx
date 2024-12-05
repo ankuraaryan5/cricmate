@@ -5,36 +5,32 @@ import Sidebar from "./Sidebar";
 import Navbar from "../Navbar";
 import UpdateScoreForm from "./UpdateScoreForm";
 import { useSelector } from "react-redux";
+
 function ScoreForm() {
   const [seriesOptions, setSeriesOptions] = useState([]);
   const [matchOptions, setMatchOptions] = useState([]);
   const [selectedSeriesId, setSelectedSeriesId] = useState("");
   const [selectedMatchIndex, setSelectedMatchIndex] = useState("");
-  const series= useSelector((state) => state.series.seriesData);
+  const series = useSelector((state) => state.series.seriesData);
   console.log(series);
   useEffect(() => {
-    const fetchSeries = () => {
-        setSeriesOptions(series);
-      } 
-    fetchSeries();
-  }, []);
-  useEffect(() => {
-    if (selectedSeriesId) {
-      const fetchMatches = async () => {
-        try {
-          const response = await axios.get(
-            `http://localhost:4000/api/v1/series/${selectedSeriesId}/allMatches`
-          );
-          console.log(response.data);
-          setMatchOptions(response.data);
-        } catch (error) {
-          console.error("Error fetching matches:", error);
-        }
-      };
-      fetchMatches();
+    if (series && series.length > 0) {
+      setSeriesOptions(series);
     }
-  }, [selectedSeriesId]);
 
+    series.map((series) => {
+      console.log(series._id);
+    });
+  }, [series]);
+
+  const matches = useSelector((state) => state.match?.matchData);
+  useEffect(() => {
+    console.log(selectedSeriesId);
+    if (matches && matches.length > 0) {
+      setMatchOptions(matches);
+    }
+    console.log(matches);
+  }, [matches, selectedSeriesId]);
   const handleSeriesChange = (e) => {
     setSelectedSeriesId(e.target.value);
     console.log(e.target.value);
