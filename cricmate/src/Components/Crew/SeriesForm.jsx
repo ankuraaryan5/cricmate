@@ -3,7 +3,7 @@ import axios from "axios";
 import Sidebar from "./Sidebar";
 import Navbar from "../Navbar";
 import { useDispatch } from "react-redux";
-import { addSeries } from "../../store/scoreSlice";
+import { addSeries } from "../../store/seriesSlice";
 
 function SeriesForm() {
   const [formData, setFormData] = useState({

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar";
 import Navbar from "../Navbar";
-
+import { useSelector } from "react-redux";
 function MatchForm() {
   const [selectedSeriesId, setSelectedSeriesId] = useState("");
   const [formData, setFormData] = useState({
@@ -26,20 +26,11 @@ function MatchForm() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [seriesList, setSeriesList] = useState([]);
+
+  const series = useSelector((state) => state.series.seriesData);
   useEffect(() => {
-    const fetchSeriesList = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:4000/api/v1/allSeries"
-        );
-        if (Array.isArray(response.data)) {
-          setSeriesList(response.data); 
-        } else {
-          setError("Unexpected data format received.");
-        }
-      } catch (err) {
-        setError(err.response?.data?.message || "Failed to fetch series list");
-      }
+    const fetchSeriesList = () => {
+      setSeriesList(series);
     };
 
     fetchSeriesList();

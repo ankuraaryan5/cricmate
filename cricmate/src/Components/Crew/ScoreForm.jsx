@@ -4,24 +4,18 @@ import axios from "axios";
 import Sidebar from "./Sidebar";
 import Navbar from "../Navbar";
 import UpdateScoreForm from "./UpdateScoreForm";
+import { useSelector } from "react-redux";
 function ScoreForm() {
   const [seriesOptions, setSeriesOptions] = useState([]);
   const [matchOptions, setMatchOptions] = useState([]);
   const [selectedSeriesId, setSelectedSeriesId] = useState("");
   const [selectedMatchIndex, setSelectedMatchIndex] = useState("");
-
+  const series= useSelector((state) => state.series.seriesData);
+  console.log(series);
   useEffect(() => {
-    const fetchSeries = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:4000/api/v1/allSeries`
-        );
-        setSeriesOptions(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching series:", error);
-      }
-    };
+    const fetchSeries = () => {
+        setSeriesOptions(series);
+      } 
     fetchSeries();
   }, []);
   useEffect(() => {

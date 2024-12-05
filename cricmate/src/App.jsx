@@ -12,7 +12,8 @@ import ScoreForm from "./Components/Crew/ScoreForm";
 import SeriesForm from "./Components/Crew/SeriesForm";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { getSeries, setLoading, setError } from "./store/scoreSlice";
+import { getSeries, setLoading, setError } from "./store/seriesSlice";
+import { getMatch } from "./store/matchSlice";
 
 function App() {
   const dispatch = useDispatch();
