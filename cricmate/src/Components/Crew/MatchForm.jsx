@@ -28,13 +28,10 @@ function MatchForm() {
   const [seriesList, setSeriesList] = useState([]);
 
   const series = useSelector((state) => state.series.seriesData);
+  console.log(series);
   useEffect(() => {
-    const fetchSeriesList = () => {
       setSeriesList(series);
-    };
-
-    fetchSeriesList();
-  }, []); 
+  }, [series]); 
 
   
   useEffect(() => {
@@ -76,6 +73,7 @@ function MatchForm() {
       );
       setMessage(response.data.message || "Match added successfully.");
       setFormData({
+
         venue: "",
         city: "",
         startDate: "",

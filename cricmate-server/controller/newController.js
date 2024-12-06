@@ -91,6 +91,7 @@ export const addMatch = async (req, res) => {
     }
 
     const newMatch = {
+      seriesId,
       venue,
       city,
       startDate,
@@ -116,6 +117,7 @@ export const addMatch = async (req, res) => {
       series,
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Failed to add match", error });
   }
 };

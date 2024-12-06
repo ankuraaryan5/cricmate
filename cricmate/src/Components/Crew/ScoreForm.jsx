@@ -27,7 +27,7 @@ function ScoreForm() {
   useEffect(() => {
     console.log(selectedSeriesId);
     if (matches && matches.length > 0) {
-      setMatchOptions(matches);
+      setMatchOptions(matches.filter((match) => match.seriesId === selectedSeriesId));
     }
     console.log(matches);
   }, [matches, selectedSeriesId]);

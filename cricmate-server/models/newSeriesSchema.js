@@ -7,6 +7,7 @@ const newSeriesSchema = new mongoose.Schema(
     totalMatches: { type: Number, required: true },
     matchData: [
       {
+        seriesId: { type: String, default: null },
         venue: { type: String, default: null },
         city: { type: String, default: null },
         startDate: { type: Date, default: null },
