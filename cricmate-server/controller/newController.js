@@ -138,7 +138,26 @@ export const getMatch = async (req, res) => {
     res.status(500).json({ message: "Failed to get match", error });
   }
 };
-// for ball by ball score update
+
+export const getAllScore = async (req, res) => {
+  
+}
+export const getScore = async (req, res) => {
+  try {
+    const { seriesId, matchIndex } = req.body;
+    const series = await NewSeries.findById(seriesId);
+    if (!series) {
+      return res.status(404).json({ message: "Series not found" });
+    }
+    const match = series.matchData[matchIndex];
+    if (!match) {
+      return res.status(404).json({ message: "Match not found in the series" });
+    }
+    res.status(200).json(match.score);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to get score", error });
+  }
+}
 export const updateScore = async (req, res) => {
   try {
     const { seriesId, matchIndex } = req.params; 

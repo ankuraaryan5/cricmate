@@ -1,7 +1,7 @@
 import express from "express";
 import { newSignup ,sendOtp, verifyUser } from "../controller/signupController.js";
 import { userLogin } from "../controller/loginController.js";
-import {  createSeries,  addMatch,  updateScore,  updateMatchDetails,  getSeries, getMatch, getAllSeries, getAllMatches} from "../controller/newController.js";
+import {  createSeries,  addMatch,  updateScore,  updateMatchDetails,  getSeries, getMatch, getAllSeries, getAllMatches, getScore} from "../controller/newController.js";
 import { createNews, getNews, updateNews } from "../controller/newsController.js";
 import { createShop, getShop, updateShop } from "../controller/shopController.js";
 import { addToCart, getCart, removeFromCart,clearCart } from "../controller/cartController.js";
@@ -20,6 +20,7 @@ router.get("/allSeries", getAllSeries);
 router.get("/series/:seriesId", getSeries);
 router.get("/series/:seriesId/allMatches", getAllMatches);
 router.get("/allMatches/matchIndex", getMatch);
+router.get("/series/match/score",getScore);
 router.post("/createNews", createNews);
 router.get("/news", getNews);
 router.put("/updateNews/:id", updateNews);
