@@ -26,7 +26,7 @@ const newSeriesSchema = new mongoose.Schema(
         },
         team1Players: [String],
         team2Players: [String] ,
-        score: [
+        team1Score: [
           {
             inning: { type: Number, default: 1 },
             batter1: { type: String, default: null },
@@ -35,11 +35,28 @@ const newSeriesSchema = new mongoose.Schema(
             over: { type: String, default: 1 },
             ball: { type: String, default: 1 },
             runs: { type: Number, default: 0 },
+            extras: { type: Number, default: 0 },
             wicket: { type: Number, default: 0 },
             comment: { type: String, default: null },
           },
         ],
-        discussions: [
+        team2Score: [
+          {
+            inning: { type: Number, default: 1 },
+            batter1: { type: String, default: null },
+            batter2: { type: String, default: null },
+            bowler: { type: String, default: null },
+            over: { type: String, default: 1 },
+            ball: { type: String, default: 1 },
+            runs: { type: Number, default: 0 },
+            extras: { type: Number, default: 0 },
+            wicket: { type: Number, default: 0 },
+            comment: { type: String, default: null },
+          },
+        ],
+        team1Total: { type: Number, default: 0 },
+        team2Total: { type: Number, default: 0 },
+        discussions:[
           {
             username: { type: String, required: true },
             message: { type: String, required: true },

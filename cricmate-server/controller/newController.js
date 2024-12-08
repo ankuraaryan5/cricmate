@@ -169,6 +169,7 @@ export const updateScore = async (req, res) => {
       over,
       ball,
       runs,
+      extras,
       wicket,
       comment,
     } = req.body;
@@ -184,7 +185,8 @@ export const updateScore = async (req, res) => {
       typeof batter2 !== "string" ||
       !batter2.trim() ||
       typeof bowler !== "string" ||
-      !bowler.trim()
+      !bowler.trim() ||
+      typeof extras !== "number" || extras<0
     ) {
       return res
         .status(400)
@@ -200,6 +202,7 @@ export const updateScore = async (req, res) => {
     if (!match) {
       return res.status(404).json({ message: "Match not found in the series" });
     }
+
     const ballScore = {
       inning,
       batter1,
@@ -208,12 +211,37 @@ export const updateScore = async (req, res) => {
       over,
       ball,
       runs,
+      extras,
       wicket,
       comment,
     };
 
-    // Push the ball score into the match score list
-    match.score.push(ballScore);
+    // Push the ball score into the match score list and update totals
+    if (inning === 1) {
+      match.team1Score = match.team1Score || []; // Initialize if not present
+      match.team1Score.push(ballScore);
+      match.team1Total = (match.team1Total || 0) + runs + extras;
+      if (wicket > 0) {
+        match.team1Wickets = (match.team1Wickets || 0) + wicket;
+      }
+    } else if (inning === 2) {
+      match.team2Score = match.team2Score || []; // Initialize if not present
+      match.team2Score.push(ballScore);
+      match.team2Total = (match.team2Total || 0) + runs + extras;
+      if (wicket > 0) {
+        match.team2Wickets = (match.team2Wickets || 0) + wicket;
+      }
+    } else {
+      return res.status(400).json({ message: "Invalid inning value" });
+    }
+
+    // Check if the match is completed
+    if (
+      (inning === 1 && match.team1Wickets === 10) || 
+      (inning === 2 && match.team2Wickets === 10)
+    ) {
+      match.status = "Completed";
+    }
 
     // Save the updated series with the new ball entry
     await series.save();
@@ -228,6 +256,7 @@ export const updateScore = async (req, res) => {
     res.status(500).json({ message: "Failed to update score", error });
   }
 };
+
 
 // Update match details after the match is completed
 export const updateMatchDetails = async (req, res) => {

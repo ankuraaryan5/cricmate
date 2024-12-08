@@ -14,17 +14,32 @@ const UpdateScoreForm = ({
     over: 1,
     ball: 1,
     runs: 0,
+    extras: 0,
     wicket: 0,
     comment: "",
   });
   const [responseMessage, setResponseMessage] = useState("");
 
   // Handle form data change
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     [name]: value,
+  //   }));
+  // };
+
+//   The issue likely arises because the values from input fields in React are always treated as strings, even if the input type is number. When you call setFormData to update the state, runs and extras are stored as strings in the state, which causes typeof runs !== "number" or typeof extras !== "number" to evaluate to true.
+
+// Solution
+// To ensure runs and extras are treated as numbers, you need to convert the input values to numbers when updating the state. You can achieve this by using the Number() function in your handleChange function.
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "runs" || name === "extras" || name === "wicket" || name === "over" || name === "ball" 
+        ? Number(value) 
+        : value,
     }));
   };
 
@@ -54,8 +69,6 @@ const UpdateScoreForm = ({
             updatedSeries.matchData[selectedMatchIndex];
           return updatedMatches;
         });
-
-        // Optionally, reset form data after submitting
         setFormData({
           inning: 1,
           batter1: "",
@@ -64,6 +77,7 @@ const UpdateScoreForm = ({
           over: 1,
           ball: 1,
           runs: 0,
+          extras: 0,
           wicket: 0,
           comment: "",
         });
@@ -149,6 +163,14 @@ const UpdateScoreForm = ({
             value={formData.runs}
             onChange={handleChange}
             required
+            className="bg-slate-200 rounded-md p-1"
+          />
+          <label>Extras:</label>
+          <input
+            type="number"
+            name="extras"
+            value={formData.extras}
+            onChange={handleChange}
             className="bg-slate-200 rounded-md p-1"
           />
 
